@@ -1,0 +1,12 @@
+04-29-2024	07:42:20 	 56a6b0c3-f492-4ba7-aa8a-0c0cbff9799d 	 undefined /states SyntaxError Unexpected token '{', ..."funfacts" {"1": "f1""... is not valid JSON 
+04-29-2024	07:43:54 	 464e0649-4061-4867-95b2-6a45cf57df24 	 undefined /states SyntaxError Unexpected token '[', ..."funfacts" [ {"1": "f"... is not valid JSON 
+04-29-2024	07:46:24 	 6448aa25-3162-4e57-a761-5b1f755d2a5e 	 undefined /states SyntaxError Unexpected token '[', ..."funfacts" [ {"f1"}, "... is not valid JSON 
+04-29-2024	07:57:34 	 8ed9a4d9-42f9-4e20-9622-139d484f059b 	 undefined /states SyntaxError Expected ',' or ']' after array element in JSON at position 37 
+04-29-2024	12:02:55 	 d11da6e0-0d23-4e29-aad7-3dde9aec9c82 	 undefined /states/AL TypeError Cannot read properties of undefined (reading 'code') 
+04-29-2024	03:31:08 	 df3054b8-0709-4349-be89-c99906f07fe0 	 undefined /states/fl ReferenceError parseString is not defined 
+04-29-2024	03:33:47 	 dbfb2a8e-ea08-42d6-9a60-7c46093a37df 	 undefined /states/ks TypeError data.find is not a function 
+04-29-2024	03:35:09 	 603d7ac2-1a74-49bc-8228-1810a906895b 	 undefined /states/ks ReferenceError parseString is not defined 
+04-29-2024	03:47:52 	 a7612f75-4d89-46b3-acfa-5f2050f9e0e8 	 undefined /states/fl TypeError data.find is not a function 
+04-29-2024	03:54:22 	 55f27394-491c-4f94-888b-2cc5921b578d 	 undefined /states/fl/capital Error Cannot set headers after they are sent to the client 
+04-29-2024	04:23:17 	 3fe756e6-12f7-45f3-89c6-01383727bdbe 	 undefined /states/fl/nickname ReferenceError stateCapital is not defined 
+05-02-2024	07:29:00 	 f8d4c459-13f5-46fa-a3bf-7c2bd60ef6cf 	 undefined /states/?contig=true ReferenceError stateController is not defined 
