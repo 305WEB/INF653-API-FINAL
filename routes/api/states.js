@@ -27,7 +27,7 @@ router.route("/:state/admission").get(stateController.GetStateAdmission);
 // redirects for funfacts
 router.route("/:state/funfacts").get(stateController.GetStateFunFacts);
 
-// redirects for randome funfacts
+// redirects for random funfacts
 router.route("/:state/funfact").get(stateController.GetRandomFunFact);
 
 // redirects for randome funfacts

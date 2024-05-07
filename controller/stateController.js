@@ -69,7 +69,7 @@ const GetState = (req, res) => {
     //
   } else {
     // If state not found, send a 404 status code
-    res.status(404).json({ message: "State not found" });
+    res.status(404).json({ message: "404 - State not found" });
   }
 
   // res.json(stateInfo);
@@ -90,7 +90,8 @@ const GetStateCapital = (req, res) => {
     //
     res.json({ state: stateCapital.state, capital: capitalCity });
   } else {
-    res.status(404).json({ message: "State not found" });
+    // error 404 message
+    res.status(404).json({ message: "404 - State not found" });
   }
 };
 
@@ -107,7 +108,8 @@ const GetStateNickname = (req, res) => {
     //
     res.json({ state: stateNick.state, nickname: stateNick.nickname });
   } else {
-    res.status(404).json({ message: "State not found" });
+    // error 404 message
+    res.status(404).json({ message: "404 - State not found" });
   }
 };
 
@@ -124,7 +126,8 @@ const GetStatePopulation = (req, res) => {
     //
     res.json({ state: statePop.state, population: statePop.population });
   } else {
-    res.status(404).json({ message: "State not found" });
+    // error 404 message
+    res.status(404).json({ message: "404 - State not found" });
   }
 };
 
@@ -141,7 +144,8 @@ const GetStateAdmission = (req, res) => {
     //
     res.json({ state: stateAdmi.state, admitted: stateAdmi.admission_date });
   } else {
-    res.status(404).json({ message: "State not found" });
+    // error 404 message
+    res.status(404).json({ message: "404 - State not found" });
   }
 };
 
@@ -158,7 +162,8 @@ const GetStateFunFacts = (req, res) => {
     //
     res.json({ state: stateFunF.state, funfacts: stateFunF.funfacts });
   } else {
-    res.status(404).json({ message: "State not found" });
+    // error 404 message
+    res.status(404).json({ message: "404 - State not found" });
   }
 };
 
@@ -200,21 +205,56 @@ const GetRandomFunFact = async (req, res) => {
   }
 };
 
-// -------------------------------------------------------------CreateNewState funfacts (Mongo db)
+// -------------------------------------------------------------CreateNewStateFact (Mongo db)
+
+// const CreateNewStateFact = async (req, res) => {
+//   if (!req.body.stateCode || !req.body.funfacts) {
+//     return res.status(400).json({ message: "State code is required" });
+//   }
+//   try {
+//     const result = await State.create({
+//       stateCode: req.body.stateCode,
+//       funfacts: req.body.funfacts
+//     });
+//     //
+//     res.status(201).json(result);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
 
 const CreateNewStateFact = async (req, res) => {
   if (!req.body.stateCode || !req.body.funfacts) {
-    return res.status(400).json({ message: "State code is required" });
+    return res
+      .status(400)
+      .json({ message: "State code and fun facts are required" });
   }
   try {
-    const result = await State.create({
-      stateCode: req.body.stateCode,
-      funfacts: req.body.funfacts
-    });
-    //
-    res.status(201).json(result);
+    // stateCode already exists ?
+    let existingState = await State.findOne({ stateCode: req.body.stateCode });
+
+    if (existingState) {
+      //
+      // push new funfact to pre existing array
+      existingState.funfacts.push(...req.body.funfacts);
+      //
+      existingState = await existingState.save();
+      //
+      return res.status(200).json(existingState);
+    } else {
+      //
+      //  if stateCode doesn't exist create a new document
+      const newState = await State.create({
+        //
+        stateCode: req.body.stateCode,
+        funfacts: req.body.funfacts
+      });
+      return res.status(201).json(newState);
+    }
   } catch (err) {
+    //
     console.log(err);
+    return res.status(500).json({ message: "Internal server error" });
   }
 };
 
@@ -255,9 +295,7 @@ const DeleteStateFunFact = (req, res) => {
     .catch((err) => {
       //
       console.error(err);
-      res
-        .status(500)
-        .json({ error: "An error occurred while deleting the fun fact" });
+      res.status(500).json({ error: "Error while deleting the fun fact" });
     });
 };
 
@@ -276,16 +314,17 @@ const UpdateStateFunFact = (req, res) => {
         return res.status(404).json({ error: "State not found" });
       }
 
-      // check if the index - subtract 1 to adjust for zero-based index
       if (!index) {
         //
         console.log("Index not provided");
         return res.status(400).json({ error: "Index not provided" });
       }
+
+      // check if the index - subtract 1 to adjust for zero-based index
       const adjustedIndex = index - 1;
 
       // if the adjusted index is within the bounds of the funfacts array
-      if (adjustedIndex < 0 || adjustedIndex >= state.funfacts.length) {
+      if (adjustedIndex >= state.funfacts.length) {
         //
         console.log("Invalid index:", adjustedIndex);
         return res.status(400).json({ error: "Invalid index" });

@@ -556,3 +556,13 @@
 05-06-2024	11:05:50 	 f8765cad-3d8f-4b79-9cdc-e989fac2035f 	 GET undefined /states/ 
 05-06-2024	11:05:57 	 acccd89e-8a2e-453d-a740-ef92d4e01951 	 GET undefined /states/ka/admission 
 05-06-2024	11:06:06 	 ad92abf2-4fac-4317-9a89-6456b95f32d9 	 GET undefined /states/ks/admission 
+05-06-2024	11:14:35 	 c7a7770e-334d-4897-bbff-395fd517fa66 	 GET undefined /states 
+05-06-2024	11:14:37 	 2cfe33ca-eb48-412f-bff9-5de6b80fc9be 	 GET undefined /favicon.ico 
+05-06-2024	11:14:44 	 2ad9bb20-42a9-4499-a45d-556df97c9eb4 	 GET undefined /states/fl 
+05-06-2024	11:14:52 	 e0ea7e2b-459f-47a0-89d1-2bb81d9b8ffa 	 GET undefined /states/fl/funfact 
+05-06-2024	11:14:53 	 1cc554fa-2f7b-4cec-b99a-1dff9442caf2 	 GET undefined /states/fl/funfact 
+05-07-2024	01:36:53 	 30fec67e-1cce-49e8-9f74-1fef1bfb9e1a 	 GET undefined /states/ 
+05-07-2024	01:36:54 	 bab393d5-38a3-4ef4-9845-a8f4298f1a07 	 GET undefined /favicon.ico 
+05-07-2024	01:39:04 	 e5f589e0-838b-4b21-bbfc-f09a2bff5c2e 	 POST undefined /states 
+05-07-2024	01:40:30 	 b5a8a777-1c04-4db8-b7fd-9a9b4212e52f 	 POST undefined /states 
+05-07-2024	01:45:15 	 902007ad-ad4a-4356-a683-5b61283d9b4b 	 POST undefined /states 
