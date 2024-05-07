@@ -207,22 +207,6 @@ const GetRandomFunFact = async (req, res) => {
 
 // -------------------------------------------------------------CreateNewStateFact (Mongo db)
 
-// const CreateNewStateFact = async (req, res) => {
-//   if (!req.body.stateCode || !req.body.funfacts) {
-//     return res.status(400).json({ message: "State code is required" });
-//   }
-//   try {
-//     const result = await State.create({
-//       stateCode: req.body.stateCode,
-//       funfacts: req.body.funfacts
-//     });
-//     //
-//     res.status(201).json(result);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-
 const CreateNewStateFact = async (req, res) => {
   if (!req.body.stateCode || !req.body.funfacts) {
     return res
@@ -302,20 +286,21 @@ const DeleteStateFunFact = (req, res) => {
 // ------------------------------------------------------------- UpdateStateFunFact
 
 const UpdateStateFunFact = (req, res) => {
-  // get dat from body request
-  const { stateCode, index, updatedFact } = req.body;
+  // get data from URL
+  const { state } = req.params;
+  // get data from request body
+  const { index, funfact } = req.body;
 
-  //find matching stawte
-  State.findOne({ stateCode: stateCode })
+  // find matching state
+  State.findOne({ stateCode: state })
     //
     .then((state) => {
       if (!state) {
-        console.log("State not found:", stateCode);
+        console.log("State not found:", state);
         return res.status(404).json({ error: "State not found" });
       }
 
       if (!index) {
-        //
         console.log("Index not provided");
         return res.status(400).json({ error: "Index not provided" });
       }
@@ -325,13 +310,12 @@ const UpdateStateFunFact = (req, res) => {
 
       // if the adjusted index is within the bounds of the funfacts array
       if (adjustedIndex >= state.funfacts.length) {
-        //
         console.log("Invalid index:", adjustedIndex);
         return res.status(400).json({ error: "Invalid index" });
       }
 
       // update item in funfacts array
-      state.funfacts[adjustedIndex] = updatedFact;
+      state.funfacts[adjustedIndex] = funfact;
 
       // updated doc
       return state.save();
@@ -346,6 +330,7 @@ const UpdateStateFunFact = (req, res) => {
     })
     .catch((err) => {
       console.error(err);
+      //
       res
         .status(500)
         .json({ error: "An error occurred while updating the fun fact" });
